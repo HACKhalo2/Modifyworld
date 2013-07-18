@@ -71,10 +71,10 @@ public abstract class ModifyworldListener implements Listener {
 			return "player." + ((Player) entity).getName();
 		} else if (entity instanceof Tameable) {
 			Tameable animal = (Tameable) entity;
-
-			return "animal." + entityName + (animal.isTamed() ? "." + animal.getOwner().getName() : "");
+			if (animal.isTamed() && animal.getOwner() != null) {
+				return "animal." + entityName + "." + animal.getOwner().getName();
+			}
 		}
-
 
 		EntityCategory category = EntityCategory.fromEntity(entity);
 
